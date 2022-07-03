@@ -6,9 +6,111 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- 导入自己的样式 -->
+    <link rel="stylesheet" href="/assets/css/login.css" />
+    <!-- 导入layui样式 -->
+    <link rel="stylesheet" href="/assets/lib/layui/css/layui.css">
 </head>
 
 <body>
+    <!-- 头部logo区域 -->
+    <div class="layui-main">
+        <img src="./assets/images/logo.png" alt="" />
+    </div>
+
+    <!-- 登录注册区域 -->
+    <div class="loginAndRegBox">
+        <div class="title-box">
+        </div>
+        <!-- 登录div -->
+        <div class="login-box">
+            <!-- 登录表单 -->
+            <form class="layui-form" id="form_login">
+                <!-- 用户名 -->
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-username"></i>
+                    <input type="text" name="username" required lay-verify="required" placeholder="请输入用户名"
+                        autocomplete="off" class="layui-input">
+                </div>
+                <!-- 密码 -->
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-password"></i>
+                    <input type="password" name="password" required lay-verify="required|pwd" placeholder="请输入密码"
+                        autocomplete="off" class="layui-input">
+                </div>
+                <!-- 按钮 -->
+                <div class="layui-form-item">
+                    <!-- 拼接两个按钮模板的功能 -->
+                    <!-- <button type="button" class="layui-btn layui-btn-fluid">流体按钮（最大化适应）</button> -->
+
+                    <!-- 表单提交按钮和普通按钮的区别：有无lay-submit属性 -->
+                    <button class="layui-btn layui-btn-fluid layui-btn-normal" lay-submit>登录</button>
+                </div>
+
+                <div class="layui-form-item links">
+                    <!-- 思考：为什么要这样写？  href="javascript:;"  保证点击a链接不会发生页面跳转 -->
+                    <a href="javascript:;" id="link_reg">去注册账号</a>
+                </div>
+
+            </form>
+        </div>
+
+        <!-- 注册div -->
+        <div class="reg-box">
+            <!-- 注册表单 -->
+            <form class="layui-form" id="form_reg">
+
+                <!-- 用户名 -->
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-username"></i>
+                    <input type="text" name="username" required lay-verify="required" placeholder="请输入用户名"
+                        autocomplete="off" class="layui-input">
+                </div>
+
+                <!-- 密码 -->
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-password"></i>
+                    <input type="password" name="password" required lay-verify="required|pwd" placeholder="请输入密码"
+                        autocomplete="off" class="layui-input">
+                </div>
+
+                <!-- 密码确认 -->
+                <div class="layui-form-item">
+                    <i class="layui-icon layui-icon-password"></i>
+                    <input type="password" name="repassword" required lay-verify="required|pwd|repwd"
+                        placeholder="再次确认密码" autocomplete="off" class="layui-input">
+                </div>
+
+                <!-- 按钮 -->
+                <div class="layui-form-item">
+                    <button class="layui-btn layui-btn-fluid layui-btn-normal" lay-submit>注册</button>
+                </div>
+
+                <div class="layui-form-item links">
+                    <a href="javascript:;" id="link_login">去登录</a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+
+    <!-- 思考4：为什么要先导入layui的js文件再导入自己的js文件？ -->
+    <!-- 导入layui的js文件 --- 可以应用表单验证等功能 -->
+    <script src="./assets/lib/layui/layui.all.js"></script>
+
+    <!-- 导入Jquery -->
+    <script src="./assets/lib/jquery.js"></script>
+
+    <!-- 
+        导入baseAPI:  
+        思考11:该文件的导入位置只能放在这里
+    -->
+    <script src="./assets/js/baseAPI.js"></script>
+
+    <!-- 导入自己的js -->
+    <script src="./assets/js/login.js"></script>
 
 </body>
 
