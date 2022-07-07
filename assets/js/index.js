@@ -37,7 +37,7 @@ function getUserInfo() {
             if (res.status !== 0) {
                 return layui.layer.msg('获取用户信息失败！')
             }
-            // console.log(res)
+            console.log(res)
             // 获取用户信息成功后，渲染用户头像
             renderAvatar(res.data)
         },
@@ -45,18 +45,20 @@ function getUserInfo() {
 
         // @@@注意点： 如何避免用户直接输入index页面的url跳转到首页？  ---- 没有权限应该无法跳转
         // 不论成功或失败，最终都会调用 complete 回调函数
-        complete: function (res) {
-            console.log('执行了complete回调:')
-            console.log(res)
-            // 在complete回调函数中，可以使用 res.responseJSON 拿到服务器响应回来的数据
-            if (res.responseJSON.status === 1 && res.responseJSON.message === '身份认证失败！') {
-                // ① 强制清空 token
-                localStorage.removeItem('token')
-                // ② 强制跳转返回登录页面
-                location.href = '/login.html'
-            }
+        // complete: function (res) {
+        //     console.log('执行了complete回调:')
+        //     console.log(res)
+        //     // 在complete回调函数中，可以使用 res.responseJSON 拿到服务器响应回来的数据
+        //     if (res.responseJSON.status === 1 && res.responseJSON.message === '身份认证失败！') {
+        //         // ① 强制清空 token
+        //         localStorage.removeItem('token')
+        //         // ② 强制跳转返回登录页面
+        //         location.href = '/login.html'
+        //     }
 
-        }
+        // }
+
+
     })
 
 }
@@ -71,7 +73,7 @@ function renderAvatar(user) {
     if (user.user_pic !== null) {
         // 3.1 渲染图片头像
         // 显示图片头像
-        $('.layui-nav-img').attr('src', usr.user_pic).show()
+        $('.layui-nav-img').attr('src', user.user_pic).show()
         // 隐藏文本头像
         $('.text-avatar').hide()
     } else {
