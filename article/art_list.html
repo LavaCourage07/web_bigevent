@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 导入layui样式 -->
+    <link rel="stylesheet" href="/assets/lib/layui/css/layui.css">
+    <!-- 导入自己的样式表 -->
+    <link rel="stylesheet" href="/assets/css/article/art_list.css">
+
+</head>
+
+<body>
+
+    <!-- 卡片区域 -->
+    <div class="layui-card">
+        <div class="layui-card-header">文章列表</div>
+        <div class="layui-card-body">
+
+            <!-- 筛选区域 -->
+            <!-- @@@注意点：需要让三个盒子在一行内显示 ---- 利用layui提供的【组装行内表单】的属性 -->
+            <!-- 增加id属性 -->
+            <form class="layui-form" id="form-search">
+                <div class="layui-form-item layui-inline">
+                    <!-- 需要修改name值 -->
+                    <select name="cate_id">
+                        <!-- @@@注意点：该部分的分类选项需要动态获取 -->
+                        <option value="">所有分类</option>
+                        <option value="最新">最新</option>
+                        <option value="科技">科技</option>
+                        <option value="股市">股市</option>
+                        <option value="历史">历史</option>
+                        <option value="情感">情感</option>
+                    </select>
+                </div>
+                <div class="layui-form-item layui-inline">
+                    <select name="state">
+                        <option value="">所有状态</option>
+                        <option value="已发布">已发布</option>
+                        <option value="草稿">草稿</option>
+                    </select>
+                </div>
+                <div class="layui-form-item layui-inline">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">筛选</button>
+                </div>
+            </form>
+
+            <!-- 列表区域 -->
+            <table class="layui-table">
+                <colgroup>
+                    <col />
+                    <col width="150" />
+                    <col width="180" />
+                    <col width="150" />
+                    <col width="150" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>文章标题</th>
+                        <th>分类</th>
+                        <th>发表时间</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+
+
+            <!-- 分页区域 -->
+            <div id="pageBox">
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 列表数据的模板引擎 -->
+    <script type="text/html" id="tpl-table">
+        {{each data}}
+        <tr>
+            <td>{{$value.title}}</td>
+            <td>{{$value.cate_name}}</td>
+            <td>{{$value.pub_date}}</td>
+            <td>{{$value.state}}</td>
+            <td>
+                <button type="button" class="layui-btn layui-btn-xs">编辑</button>
+                <!-- 给删除按钮添加类名 -->
+                <!-- 给删除按钮自定义 Id 属性 -->
+                <button type="button" class="layui-btn layui-btn-danger layui-btn-xs btn-delete" data-id="Id">删除</button>
+            </td>
+        </tr>
+        {{/each}}
+    </script>
+
+    <!-- 分类可选项的模板结构 -->
+    <script type="text/html" id="tpl-cate">
+        <option value="">所有分类</option>
+        {{each data}}
+        <option value="{{$value.Id}}">{{$value.name}}</option>
+        {{/each}}
+    </script>
+
+
+    <!-- 导入layui的js文件 -->
+    <script src="/assets/lib/layui/layui.all.js">
+
+    </script>
+
+    <!-- 导入jQuery -->
+    <script src="/assets/lib/jquery.js"></script>
+
+    <!-- 导入 baseAPI -->
+    <script src="/assets/js/baseAPI.js"></script>
+
+    <!-- 导入模板引擎 -->
+    <script src="/assets/lib/template-web.js"></script>
+
+    <!-- 导入自己的js文件 -->
+    <script src="/assets/js/article/art_cate.js"></script>
+
+</body>
+
+</html>
